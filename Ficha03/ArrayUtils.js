@@ -46,6 +46,20 @@ module.exports = {
             sub.push(array[i]);
         }
         return sub;
+    },
+    swap: function(array,i1,i2){
+        var temp = array[i1];
+        array[i1]=array[i2];
+        array[i2]=temp;
+        return array;
+    },
+    contains:function(array,value){
+        this.indexOf(array,value) != -1;
+    },
+    concatenate: function(array1,array2){
+        for (let i = 0; i < array2.length; index++) {
+            array1.push       
     }
+}
 };
 
