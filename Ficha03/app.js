@@ -30,3 +30,5 @@ console.log(ArrayUtils.minimum(array));
 console.log(ArrayUtils.average(array));
 console.log(ArrayUtils.indexOf(array, 9));
 console.log(ArrayUtils.subArray(array, 1, 3));
+console.log(ArrayUtils.swap(array,0,2));
+console.log(ArrayUtils.contains(array,0));
