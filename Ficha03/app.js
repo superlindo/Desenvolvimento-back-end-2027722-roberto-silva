@@ -41,3 +41,9 @@ var emitter = new  Emitter();
 emitter.on("LOGIN", function(){
     console.log("LOGIN 1");
 })
+
+emitter.on("LOGIN", function(){
+    console.log("LOGIN 2");
+})
+emitter.emit("LOGIN")
+
