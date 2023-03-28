@@ -32,3 +32,12 @@ console.log(ArrayUtils.indexOf(array, 9));
 console.log(ArrayUtils.subArray(array, 1, 3));
 console.log(ArrayUtils.swap(array,0,2));
 console.log(ArrayUtils.contains(array,0));
+
+
+var Emitter = require(".emitter.js");
+
+var emitter = new  Emitter();
+
+emitter.on("LOGIN", function(){
+    console.log("LOGIN 1");
+})
