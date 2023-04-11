@@ -18,11 +18,41 @@ function readFile(path) {
 var content = readFile('./persons.json')
 console.log(content);
 
-/*
+app.post('/users', (req, res) => { 
+  res.send(req.body.firstname);
+})
+
 app.get('/users', (req, res) => {
   res.send(content);
 })
-*/
-app.post('/users', (req, res) => { 
-  res.send(req.body.firstname);
+
+app.post('/users', (req, res)=>{
+  var person = req.body;
+  var size= Object.keys(content).length;
+  var id = size+1;
+  person.id=id;
+  content["person" + id]= person;
+  res.send("ID: " + id);
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+
+app.get('/',(req, res) => {
+  res.send('Hello World!')
+})
+
+app.get('/users',(req, res) => {
+  res.send(content)
+})
+
+app.get('/users/:id',(req, res) => {
+  var id=req.params.id;
+  var person=content["person" + id];
+  res.send(person);
+})
+
+app.put('/users',(req, res) => {
+  res.send(content)
 })
