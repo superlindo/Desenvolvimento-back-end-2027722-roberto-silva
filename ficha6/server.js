@@ -1,20 +1,22 @@
-//npm init no terminal
-//instalar dependençias
-//npm install express
+//npm init no terminal se for a primeira vez 
+//npm install express se for a primeira vez
+//npm install
+
 
 const express = require('express')
 const fs = require('fs')
 const app = express()
 const port = 3000
 
-app.arguments(express.json());
-app.arguments(writelog);
+app.use(express.json());
+app.use(writelog);
 
 fs.appendFileSync("log.txt","SERVER STARTED \n")
 
 function writelog(req, res, next){
     var log = req.url + ", "+ req.method + ", " + new Date().toString() + "\n";
     fs.appendFileSync("log.txt",log);
+    next();
 }
 
 
@@ -72,4 +74,31 @@ app.get('/html/:name' , (req,res)=>{
         'content-Type':'text/html'
     });
     res.end(body);
+});
+
+// http://localhost:3000/log
+app.get('/log',(req,res)=>{
+    var log = fs.readFileSync("log.txt","utf-8");
+    res.send(log);
+});
+
+// http://localhost:3000/log.txt
+app.get('/log.txt',(req,res)=>{
+    res.download('log.txt',(err)=>{
+        if(err){
+            res.status(404).send("File not found")
+        }
+    });
+});
+
+
+app.delete('/log.txt',(req,res)=>{
+    fs.unlink('/log.txt',(err)=>{
+        if(err != undefined){
+            res.status(304).end("Unable to delete file");
+        }
+        else{
+            res.send("File deleted!")
+        }
+    });
 });

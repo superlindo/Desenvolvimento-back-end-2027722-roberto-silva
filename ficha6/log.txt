@@ -21,3 +21,14 @@ SERVER STARTED
 /, GET, 18
 SERVER STARTED 
 /, GET, Tue Apr 18 2023 18:42:29 GMT+0100 (Hora de verão da Europa Ocidental)
+SERVER STARTED 
+/log, GET, Thu Apr 20 2023 10:20:49 GMT+0100 (Hora de verão da Europa Ocidental)
+/favicon.ico, GET, Thu Apr 20 2023 10:20:49 GMT+0100 (Hora de verão da Europa Ocidental)
+SERVER STARTED 
+/log.txt, GET, Thu Apr 20 2023 10:24:15 GMT+0100 (Hora de verão da Europa Ocidental)
+/log.txt, GET, Thu Apr 20 2023 10:24:20 GMT+0100 (Hora de verão da Europa Ocidental)
+SERVER STARTED 
+/log.txt, GET, Thu Apr 20 2023 10:24:48 GMT+0100 (Hora de verão da Europa Ocidental)
+SERVER STARTED 
+/log.txt, GET, Thu Apr 20 2023 10:25:03 GMT+0100 (Hora de verão da Europa Ocidental)
+/log.txt, GET, Thu Apr 20 2023 10:25:53 GMT+0100 (Hora de verão da Europa Ocidental)
