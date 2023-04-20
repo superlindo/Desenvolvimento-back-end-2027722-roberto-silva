@@ -102,3 +102,7 @@ app.delete('/log.txt',(req,res)=>{
         }
     });
 });
+
+// express --view=pug myapp 
+//cd myapp
+//npm install
