@@ -44,13 +44,32 @@ router.get('/:age/:lastname', function(req, res, next) {
 });
 
 
-/* POST users (Add details of new person) */
-router.get('/', function(req, res, next) {
+/* POST users (Add details of new person) fazer no postman apenas , nao da no browser*/
+router.post('/', function(req, res, next) {
   var person=req.body;
-  connection.query("INSERT INTO persons SET = ", [person],(err,results,fields)=>{
+  connection.query("INSERT INTO persons SET ? ", [person],(err,results,fields)=>{
       res.send(results);
   })
 });
+
+
+/* POST users (Add details of new person) fazer no postman apenas , nao da no browser*/
+// PUT /persons/:id - Atualizar detalhes de uma pessoa
+router.put('/:id', function(req, res, next) {
+  var person = req.body;
+  var id = req.params.id;
+  connection.query("UPDATE persons SET ? WHERE ID = ?", [person, id], (err, results, fields) => {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+    } else if (results.affectedRows == 0) {
+      res.sendStatus(404);
+    } else {
+      res.send(results);
+    }
+  });
+});
+
 
 
 module.exports = router;
