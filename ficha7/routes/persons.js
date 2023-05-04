@@ -61,9 +61,9 @@ router.put('/:id', function(req, res, next) {
   connection.query("UPDATE persons SET ? WHERE ID = ?", [person, id], (err, results, fields) => {
     if (err) {
       console.log(err);
-      res.sendStatus(500);
+      res.sendStatus(500).end("Error while performing"); //.end é para poderes adicionar a mensagem ao erro
     } else if (results.affectedRows == 0) {
-      res.sendStatus(404);
+      res.sendStatus(404).end("Id not found");
     } else {
       res.send(results);
     }
