@@ -16,17 +16,17 @@ const options = {
     info: {
       title: 'Hello World',
       version: '1.0.0',
-    },
+    },    
+  },
+  definition:{
+    Person:{
+
+    }
   },
   apis: ['./routes/*.js'], // files containing annotations as above
 };
 
 const openapiSpecification = swaggerJsdoc(options);
-
-
-
-
-
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -47,6 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/persons', personsRouter);
+app.use('/api-docs', swaggerUI.serve , swaggerUI.setup(openapiSpecification));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -66,7 +67,7 @@ app.use(function(err, req, res, next) {
 
 
 
-app.use('api-docs', swaggerUI.serve , swaggerUI.setup(openapiSpecification));
+
 
 
 

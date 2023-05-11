@@ -9,37 +9,101 @@ var connection=mysql.createConnection({
     database:'ficha7'
 });
 
+
+/**
+   * @swagger
+   * definitions:
+   *   Person:
+   *     required:
+   *       - firstname
+   *       - lastname
+   *     properties:
+   *       firstname:
+   *         type: string
+   *       lastname:
+   *         type: string
+   *       age:
+   *         type: number
+   *       profession:
+   *         type:string
+   */
+
+
+
+
+
+
+
+
+
+
 /**
  * @openapi
- * /:
+ * /persons:
  *   get:
  *     description:  GET users listing.
+  *     parameters:
+ *       - name: id
+ *         description: GET users listing 
+ *         in: path
+ *         required: true
+ *         type: number
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
  */
 router.get('/', function(req, res, next) {
-  //connection.query("SELECT * FROM persons",(err,results,fields)=>{
-  //    res.send(results);
-  //})
+  connection.query("SELECT * FROM persons",(err,results,fields)=>{   //GET users listing
+      res.send(results);
+  })
 });
 
 
-/* GET users ID listing. */
+/**
+ * @openapi
+ * /persons/{id}:
+ *   get:
+ *     description:  GET users listing by id.
+ *     parameters:
+ *       - name: id
+ *         description: Person's id 
+ *         in: path
+ *         required: true
+ *         type: number
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 router.get('/:id', function(req, res, next) {
   var id = req.params.id;
-  connection.query('SELECT * FROM persons WHERE idpersons = ?', id,(err,results,fields)=>{   
+  connection.query('SELECT * FROM persons WHERE idpersons = ?', id,(err,results,fields)=>{   //GET users ID listing.
       res.send(results);
   })
 });
 
-/* DELETE users */
+
+
+/**
+ * @openapi
+ * /persons/:id:
+ *   delete:
+ *     description:  GET users listing.
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 router.delete('/:id', function(req, res, next) {
   var id = req.params.id;
-  connection.query('DELETE FROM persons WHERE idpersons = ?', id,(err,results,fields)=>{   
+  connection.query('DELETE FROM persons WHERE idpersons = ?', id,(err,results,fields)=>{   /* DELETE users */
       res.send(results);
   })
 });
+
+
+
+
+
+
 
 /* GET users AGE & LASTNAME listing. */
 router.get('/:age/:lastname', function(req, res, next) {
@@ -47,6 +111,13 @@ router.get('/:age/:lastname', function(req, res, next) {
       res.send(results);
   })
 });
+
+
+
+
+
+
+
 
 
 /* POST users (Add details of new person) fazer no postman apenas , nao da no browser*/
