@@ -9,14 +9,19 @@ var connection=mysql.createConnection({
     database:'ficha7'
 });
 
-connection.connect();
-
-/* GET users listing. */
+/**
+ * @openapi
+ * /:
+ *   get:
+ *     description:  GET users listing.
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 router.get('/', function(req, res, next) {
-  connection.query("SELECT * FROM persons",(err,results,fields)=>{
-   
-      res.send(results);
-  })
+  //connection.query("SELECT * FROM persons",(err,results,fields)=>{
+  //    res.send(results);
+  //})
 });
 
 

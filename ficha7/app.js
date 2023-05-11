@@ -4,6 +4,30 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
+
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
+
+
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Hello World',
+      version: '1.0.0',
+    },
+  },
+  apis: ['./routes/*.js'], // files containing annotations as above
+};
+
+const openapiSpecification = swaggerJsdoc(options);
+
+
+
+
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var personsRouter = require('./routes/persons');
@@ -39,5 +63,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
+app.use('api-docs', swaggerUI.serve , swaggerUI.setup(openapiSpecification));
+
+
+
 
 module.exports = app;
