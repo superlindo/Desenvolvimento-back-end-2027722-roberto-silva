@@ -8,6 +8,7 @@ var logger = require('morgan');
 
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
+const swaggerJson = require('./swagger.json');
 
 
 const options = {
@@ -47,7 +48,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/persons', personsRouter);
-app.use('/api-docs', swaggerUI.serve , swaggerUI.setup(openapiSpecification));
+app.use('/api-docs', swaggerUI.serve , swaggerUI.setup(swaggerJson));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
